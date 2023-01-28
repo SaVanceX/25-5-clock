@@ -11,10 +11,9 @@ function App() {
       if ("Break-dec" === target) {
         setBreakState(breakState - 1);
       }
-    }
-
-    if ("Break-inc" === target) {
-      setBreakState(breakState + 1);
+      if ("Break-inc" === target) {
+        setBreakState(breakState + 1);
+      }
     }
   };
 
