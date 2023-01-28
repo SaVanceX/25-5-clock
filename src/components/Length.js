@@ -1,9 +1,15 @@
-export default function Length() {
+export default function Length(props) {
+  const { type } = props;
   return (
     <>
-      <button>Decrement</button>
-      <p>Value</p>
-      <button>Inecrement</button>
+      <div className="dec-inc-container">
+        <p>{type} Length</p>
+        <div className="btns-container">
+          <button>Decrement</button>
+          <p>Value</p>
+          <button>Inecrement</button>
+        </div>
+      </div>
     </>
   );
 }

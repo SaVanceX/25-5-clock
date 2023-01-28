@@ -6,8 +6,8 @@ function App() {
       <div className="clock-container">
         <h1>25 + 5 Clock</h1>
         <div className="length-container">
-          <Length />
-          <Length />
+          <Length type="Break" />
+          <Length type="Session" />
         </div>
         <div className="timer">
           <p>00:00</p>

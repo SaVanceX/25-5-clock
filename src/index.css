@@ -26,10 +26,30 @@ h1 {
 
 .length-container {
   display: flex;
-  width: 40%;
+  width: 50%;
   justify-content: space-around;
 }
 
 .timer p {
   font-size: 150px;
+}
+
+.btns-container {
+  display: flex;
+}
+
+.dec-inc-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dec-inc-container p {
+  margin-bottom: 10px;
+}
+
+.btns-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
