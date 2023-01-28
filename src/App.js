@@ -1,13 +1,20 @@
 import { useState } from "react";
 import Length from "./components/Length";
 
-const handleClick = (event) => {
-  // handle rather button is decrement or increment
-  console.log(event.target.className);
-};
-
 function App() {
   const [breakState, setBreakState] = useState(5);
+
+  const handleClick = (event) => {
+    const target = event.target.className;
+    // handle rather button is decrement or increment
+    if ("Break-dec" === target) {
+      setBreakState(breakState - 1);
+    }
+
+    if ("Break-inc" === target) {
+      setBreakState(breakState + 1);
+    }
+  };
 
   return (
     <>
