@@ -7,8 +7,10 @@ function App() {
   const handleClick = (event) => {
     const target = event.target.className;
     // handle rather button is decrement or increment
-    if ("Break-dec" === target) {
-      setBreakState(breakState - 1);
+    if (breakState > 1 && breakState < 60) {
+      if ("Break-dec" === target) {
+        setBreakState(breakState - 1);
+      }
     }
 
     if ("Break-inc" === target) {
