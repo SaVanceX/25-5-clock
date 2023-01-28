@@ -1,14 +1,13 @@
+import Length from "./components/Length";
+
 function App() {
   return (
     <>
       <div className="clock-container">
         <h1>25 + 5 Clock</h1>
         <div className="length-container">
-          <button>Decrement</button>
-          <button>Inecrement</button>
-          <button>Decrement</button>
-
-          <button>Inecrement</button>
+          <Length />
+          <Length />
         </div>
         <div className="timer">
           <p>00:00</p>
