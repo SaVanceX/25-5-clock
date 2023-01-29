@@ -1,30 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Length from "./components/Length";
 
 function App() {
   const [breakState, setBreakState] = useState(5);
   const [sessionState, setSessionState] = useState(25);
+
   const handleClick = (event) => {
     const target = event.target.className;
-    console.log(target);
-    // handle rather button is decrement or increment
-    if (breakState > 1 && breakState < 60) {
-      if ("Break-dec" === target) {
-        setBreakState(breakState - 1);
-      }
-      if ("Break-inc" === target) {
-        setBreakState(breakState + 1);
-      }
+    if (breakState > 1 && "Break-dec" === target) {
+      setBreakState(breakState - 1);
+    } else if (breakState < 60 && "Break-inc" === target) {
+      console.log("Increment Break Value");
+      setBreakState(breakState + 1);
     }
-
-    if (sessionState > 1 && sessionState < 60) {
-      if ("Session-dec" === target) {
-        setSessionState(sessionState - 1);
-      }
-      console.log("hello");
-      if ("Session-inc" === target) {
-        setSessionState(sessionState + 1);
-      }
+    if (sessionState > 1 && "Session-dec" === target) {
+      setSessionState(sessionState - 1);
+    } else if (sessionState < 60 && "Session-inc" === target) {
+      setSessionState(sessionState + 1);
     }
   };
 
