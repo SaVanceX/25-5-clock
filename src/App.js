@@ -32,8 +32,9 @@ function App() {
             value={sessionState}
           />
         </div>
-        <div className="timer">
-          <p>00:00</p>
+        {/* padStart(2, '0') */}
+        <div className="session-timer">
+          <p>{String(sessionState).padStart(2, "0")}:00</p>
         </div>
         <div className="timer-controls">Timer controls</div>
         <button>Play - Pause</button>
