@@ -23,11 +23,21 @@ function App() {
     }
   };
 
+  const handleSessionMin = () => {
+    if (sessionMin > 1) {
+      setSessionMin((sessionMin) => {
+        console.log(sessionMin);
+        return sessionMin - 1;
+      });
+    }
+  };
+
   const startCountDown = () => {
     console.log("Start Count Down");
     intervalId.current = setInterval(() => {
       setSessionSeconds((sessionSeconds) => {
         if (sessionSeconds === 0) {
+          handleSessionMin();
           setSessionSeconds(59);
         }
         return sessionSeconds - 1;
@@ -45,7 +55,7 @@ function App() {
 
     if (togglePlay === false) {
       if (sessionSeconds === 0) {
-        setSessionSeconds(59);
+        // setSessionSeconds(59);
         startCountDown();
       }
       if (sessionSeconds < 59 && sessionSeconds > 0) {
