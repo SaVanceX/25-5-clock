@@ -1,13 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Length from "./components/Length";
 
 function App() {
-  const [breakState, setBreakState] = useState(5);
-  const [sessionMin, setSessionMin] = useState(25);
+  const [breakState, setBreakState] = useState(2);
+  const [sessionMin, setSessionMin] = useState(2);
   const [sessionSeconds, setSessionSeconds] = useState(0);
+
+  const [breakMin, setBreakMin] = useState(2);
+  const [breakSeconds, setBreakSeconds] = useState(0);
+  const [showBreakTime, setBreakTime] = useState(false);
   const [togglePlay, setTogglePlay] = useState(false);
   let intervalId = useRef(null);
-
+  let sessionRef = useRef(null);
   const handleClick = (event) => {
     const target = event.target.className;
     if (breakState > 1 && "Break-dec" === target) {
@@ -23,8 +27,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (sessionMin === 0 && sessionSeconds === 0 && showBreakTime === false) {
+      setBreakTime(true);
+      stopCountDown();
+    }
+  });
   const handleSessionMin = () => {
-    if (sessionMin > 1) {
+    if (sessionMin >= 1) {
       setSessionMin((sessionMin) => {
         console.log(sessionMin);
         return sessionMin - 1;
@@ -37,6 +47,11 @@ function App() {
     intervalId.current = setInterval(() => {
       setSessionSeconds((sessionSeconds) => {
         if (sessionSeconds === 0) {
+          if (sessionMin === 1) {
+            // TODO Refactor
+            sessionRef.current.style.color = "red";
+          }
+
           handleSessionMin();
           setSessionSeconds(59);
         }
@@ -77,10 +92,17 @@ function App() {
           <Length type="Session" handleClick={handleClick} value={sessionMin} />
         </div>
         <div className="session-timer">
-          <p className="session-text">
-            {String(sessionMin).padStart(2, "0")}:
-            {String(sessionSeconds).padStart(2, "0")}
-          </p>
+          {showBreakTime ? (
+            <p className="session-text" style={{ color: "black" }}>
+              {String(breakMin).padStart(2, "0")}:
+              {String(breakSeconds).padStart(2, "0")}
+            </p>
+          ) : (
+            <p className="session-text" ref={sessionRef}>
+              {String(sessionMin).padStart(2, "0")}:
+              {String(sessionSeconds).padStart(2, "0")}
+            </p>
+          )}
         </div>
         <div className="timer-controls">Timer controls</div>
         {!togglePlay ? (
