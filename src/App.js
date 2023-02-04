@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import Length from "./components/Length";
 
+// WORK IN PROGRESS
 function App() {
   const [breakState, setBreakState] = useState(2);
   const [sessionMin, setSessionMin] = useState(2);
   const [sessionSeconds, setSessionSeconds] = useState(0);
 
-  const [breakMin, setBreakMin] = useState(2);
-  const [breakSeconds, setBreakSeconds] = useState(0);
-  const [showBreakTime, setBreakTime] = useState(false);
   const [togglePlay, setTogglePlay] = useState(false);
   let intervalId = useRef(null);
   let sessionRef = useRef(null);
@@ -28,8 +26,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (sessionMin === 0 && sessionSeconds === 0 && showBreakTime === false) {
-      setBreakTime(true);
+    if (sessionMin === 0 && sessionSeconds === 0) {
       stopCountDown();
     }
   });
@@ -92,17 +89,10 @@ function App() {
           <Length type="Session" handleClick={handleClick} value={sessionMin} />
         </div>
         <div className="session-timer">
-          {showBreakTime ? (
-            <p className="session-text" style={{ color: "black" }}>
-              {String(breakMin).padStart(2, "0")}:
-              {String(breakSeconds).padStart(2, "0")}
-            </p>
-          ) : (
-            <p className="session-text" ref={sessionRef}>
-              {String(sessionMin).padStart(2, "0")}:
-              {String(sessionSeconds).padStart(2, "0")}
-            </p>
-          )}
+          <p className="session-text" ref={sessionRef}>
+            {String(sessionMin).padStart(2, "0")}:
+            {String(sessionSeconds).padStart(2, "0")}
+          </p>
         </div>
         <div className="timer-controls">Timer controls</div>
         {!togglePlay ? (
